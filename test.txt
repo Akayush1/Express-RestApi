@@ -1,0 +1,4 @@
+//How we start in mongoose
+1.we design Schema-> Define the Structure
+2. Schema ->Model
+3. Using Model we Do Crud Operation

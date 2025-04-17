@@ -1,8 +1,46 @@
 const express = require("express");
 const users  = require('./MOCK_DATA.json');
 const fs = require("fs");
+const mongoose= require("mongoose");
+
+
 const { error } = require("console");
+const { type } = require("os");
 const app = express();
+
+//connectiion
+mongoose
+    .connect('mongodb://127.0.0.1:27017/youtubeapp-1')
+    .then(()=>console.log("Mongodb Connected"))
+    .catch((err)=>console.log("Mongo Error",err));
+
+
+
+// Schema of Mongoose
+const userSchema = new mongoose.Schema({
+    firstName:{
+        type: String,
+        required: true,
+    },
+    lastName:{
+        type: String,
+        required: true,
+
+        
+    },
+    email:{
+        type:String,
+        required: true,
+        unique:true,
+
+    },
+    JOB_TITLE:{
+        type:String,
+    }
+})
+
+const User=mongoose.model('user',userSchema);
+
 
 //Middleware Plugin
 app.use(express.urlencoded({extended:false}));//urlencoded is from postman body section it is a data which  comes from forms
